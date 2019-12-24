@@ -20,12 +20,9 @@ class Assetreports(models.Model):
 class Asetreportssd(models.Model):
     _inherit = 'asset.asset.report'
     
-    account_analytic_id = fields.Many2one('account.analytic.account', string='Unit')
     analytic_tag_ids = fields.Many2one('account.analytic.tag', string='Location', 
                                         domain=[('analytic_dimension_id.name','=','LOCATION')])
     
-    analytic_tag2_ids = fields.Many2one('account.analytic.tag', string='Bisnis', 
-                                        domain=[('analytic_dimension_id.name','=','BISNIS')])
     
     @api.model_cr
     def init(self):
@@ -56,7 +53,6 @@ class Asetreportssd(models.Model):
                     a.category_id as asset_category_id,
                     a.partner_id as partner_id,
                     a.analytic_tag_ids as analytic_tag_ids,
-                    a.analytic_tag2_ids as analytic_tag2_ids,
                     a.state as state,
                     count(dl.*) as installment_nbr,
                     count(dl.*) as depreciation_nbr,
@@ -68,7 +64,7 @@ class Asetreportssd(models.Model):
                 group by
                     dl.amount,dl.asset_id,dl.depreciation_date,dl.name,
                     a.date, dl.move_check, a.state, a.category_id, a.partner_id, a.company_id,
-                    a.value, a.id, a.salvage_value, dlmin.id, a.analytic_tag_ids, a.analytic_tag2_ids
+                    a.value, a.id, a.salvage_value, dlmin.id, a.analytic_tag_ids
         )""")
 
     
