@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="analytic_tag_form">
+            <field name="name">analytic_tag_form</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="arch" type="xml">
+
+                <field name='analytic_tag_ids' position="replace">
+                    <field name="analytic_tag_ids"/>
+                </field>
+
+                <field name='analytic_tag_ids' position="after">
+                    <field name="analytic_tag2_ids"/>
+                </field>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>
